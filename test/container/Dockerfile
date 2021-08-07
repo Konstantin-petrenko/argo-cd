@@ -9,7 +9,7 @@ FROM registry:2.7.1 as registry
 FROM ubuntu:21.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN  apt-get update && apt-get install --fix-missing -y \
+RUN apt-get update && apt-get install --fix-missing -y \
         ca-certificates \
         curl \
         openssh-server \
@@ -40,7 +40,7 @@ ADD ./hack/installers installers
 
 RUN ./install.sh dep-linux && \
     ./install.sh ksonnet-linux && \
-    ./install.sh helm2-linux && \
+#    ./install.sh helm2-linux && \
     ./install.sh helm-linux && \
     ./install.sh kubectl-linux && \
     ./install.sh kustomize-linux && \
@@ -51,8 +51,8 @@ RUN ./install.sh dep-linux && \
     go get github.com/kisielk/godepgraph && \
     go get github.com/jstemmer/go-junit-report && \
     rm -rf /tmp/dl && \
-    rm -rf /tmp/helm && \
-    rm -rf /tmp/helm2 && \
+#    rm -rf /tmp/helm && \
+#    rm -rf /tmp/helm2 && \
     rm -rf /tmp/ks_*
 
 # These are required for running end-to-end tests
